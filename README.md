@@ -32,6 +32,13 @@ catkin build
 标定物如图所示，标定物的四周贴了二维码，二维码是提供一个较为准确的先验姿态，随后使用icp计算出更为准确的姿态
  - 采用Tsai等两步法进行计算标定矩阵时，由于该方法是先计算旋转矩阵，再将旋转矩阵带入计算平移向量。
    此方法容易将旋转矩阵的误差所带来的放大，导致平移向量的不精准。可以依据最优化理论，采用凸松弛全局优化机器人手眼标定的方法，替代Tsai进行求解。具体原理可以查看论文
+## 准备工作
+ - 3D打印标定块(qr_code_icp/prepareddata/biaodingkuai3.stl)，建议打印哑光的材质，因为realsense反光强烈的时候，点云会发生波动
+![alt text](images/biaodingkuai.jpeg)
+ - 从网络上下载二维码，类型为oringl aruco ,id 号为22，44，888，963，以及大小均为0.06m
+ >二维码下载网站：https://chev.me/arucogen/
+ - 将二维码 剪裁，贴在标定板的四个面上，一定注意顺序，参考下图
+ ![alt text](images/image-4.png)
 ## 使用教程
 以65机械臂标定为例
 首先启动机械臂的相关节点
@@ -69,7 +76,7 @@ rosrun 3dposedetection calibration
 换一个姿态，需要重新运行配准程序，然后采样。
 采样15个点足够已经足够计算，选择算法为Optimize/Li_wei,点击compute输出计算的结果
 ![alt text](images/image-2.png)
-
+注意最终的计算结果是图像原初坐标系camera_color_optical_frame基于机械臂末端的变换
 ## 代码结构
 ```python
 src
