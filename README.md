@@ -19,7 +19,7 @@ sudo apt-get install librealsense2-utils
 创建工作空间
 ```
 cd ($ 你的工作空间)/src
-git clone https://github.com/IntelRealSense/realsense-ros.git
+git clone https://github.com/IntelRealSense/realsense-ros.git -b ros1-legacy
 git clone https://github.com/RealManRobot/rm_robot.git
 git clone https://github.com/Michael-Duan-geek/icp-handeye.git
 catkin build rm_msgs
