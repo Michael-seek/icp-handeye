@@ -361,3 +361,7 @@ class HandeyeCalibrationBackendOptimize(object):
    // 使用最终变换矩阵变换原始模型点云，得到配准后的点云。
    pcl::transformPointCloud(*ori_object_xyz, *final_model, transformationfinal);
 ```
+## 关于坐标系的一些解释
+aruco_multi会产生四个二维码相对于camera_color_optical_frame的坐标
+而使用realsense相机进行彩色与深度的对齐后，点云的坐标系也是基于camera_color_optical_frame的，如果此处设置错误的话，会导致标定结果不准确
+如果使用其他相机，则需要注意，需要将彩色图像与深度图像进行对齐，同时注意点云的坐标系以及二维码的坐标系，对应的要修改3dpose_forcalibration.cpp中获取二维码变换的基底坐标系为点云的基底坐标系
