@@ -4,7 +4,7 @@ SET( CMAKE_CXX_FLAGS "-std=c++14 -O3")
 file(GLOB_RECURSE Demo_PCL_headers
                   ${CMAKE_CURRENT_SOURCE_DIR}/*.h
                   ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp)
-set(OpenGR_DIR /home/michael/tools/OpenGR/build/)
+set(OpenGR_DIR /home/michael/OpenGR/build/)
 
 find_package(PCL 1.7 REQUIRED)
 find_package(OpenGR REQUIRED)

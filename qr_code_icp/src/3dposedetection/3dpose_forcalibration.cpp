@@ -524,7 +524,7 @@ int main(int argc, char **argv)
 
     // 广播base_link与base_laser坐标系之间的tf数据
     // br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "camera_color_optical_frame", "object"));
-    br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "tracking_origin", "tracking_marker")); // tracking_origin其对应就是camera_color_optical_frame
+    br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "camera_color_optical_frame", "tracking_marker")); // tracking_origin其对应就是camera_color_optical_frame
   }
   return (0);
 }

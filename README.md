@@ -12,7 +12,13 @@ cmake ..
 make
 ```
 安装librealsense
-```
+```sh
+#注册服务器的公钥
+sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
+#将服务器添加到存储库列表中
+sudo add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo $(lsb_release -cs) main" -u
+#基础安装
 sudo apt-get install librealsense2-dkms
 sudo apt-get install librealsense2-utils
 ```
@@ -21,7 +27,7 @@ sudo apt-get install librealsense2-utils
 cd ($ 你的工作空间)/src
 git clone https://github.com/IntelRealSense/realsense-ros.git -b ros1-legacy
 git clone https://github.com/RealManRobot/rm_robot.git
-git clone https://github.com/Michael-Duan-geek/icp-handeye.git
+git clone https://github.com/Michael-seek/icp-handeye.git
 catkin build rm_msgs
 #全部编译之前修改3dposedetection的CMakeLists.txt中的OpenGR_DIR为刚刚编译OpenGR的builld文件路径
 catkin build 
