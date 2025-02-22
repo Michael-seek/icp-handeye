@@ -128,7 +128,7 @@ class HandeyeCalibrationBackendOptimize(object):
             (None, None)   # t3 = tz
         ]
         # 求解
-        sol = minimize(HandeyeCalibrationBackendOptimize.objective, x0, args=(A, B), bounds=bounds,constraints=constraints)
+        sol = minimize(HandeyeCalibrationBackendOptimize.objective, x0, args=(A, B), bounds=bounds,constraints=constraints,tol=1e-10)
         loginfo(f"应用非线性优化的四元数是：\n {[sol.x[1],sol.x[2],sol.x[3],sol.x[0]]}\n")
         loginfo(f"应用非线性优化的平移向量是：\n {[sol.x[4],sol.x[5],sol.x[6]]}\n")
         # print(sol.x)
