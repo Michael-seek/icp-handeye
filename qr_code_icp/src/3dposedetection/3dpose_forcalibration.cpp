@@ -288,7 +288,7 @@ int main(int argc, char **argv)
   // RANSAC是一种鲁棒的模型拟合方法，用于从包含异常值的数据中估计模型参数。
   seg.setMethodType(pcl::SAC_RANSAC);
   // 设置距离的阈值，多少范围的点会被认为是分割模型内的点，就是标定块中中间平面的厚度，这个参数可能需要手动调整获取最佳的效果
-  seg.setDistanceThreshold(0.016);
+  seg.setDistanceThreshold(0.010);
   // 执行点云分割操作，并将结果存储在inliers和coefficients智能指针指向的对象中。
   // inliers将包含分割后模型的内点索引，coefficients将包含模型的系数。  
   seg.setInputCloud(scene_input);
