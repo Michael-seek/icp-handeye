@@ -288,7 +288,7 @@ int main(int argc, char **argv)
   // RANSAC是一种鲁棒的模型拟合方法，用于从包含异常值的数据中估计模型参数。
   seg.setMethodType(pcl::SAC_RANSAC);
   // 设置距离的阈值，多少范围的点会被认为是分割模型内的点，就是标定块中中间平面的厚度，这个参数可能需要手动调整获取最佳的效果
-  seg.setDistanceThreshold(0.010);
+  seg.setDistanceThreshold(0.011);
   // 执行点云分割操作，并将结果存储在inliers和coefficients智能指针指向的对象中。
   // inliers将包含分割后模型的内点索引，coefficients将包含模型的系数。  
   seg.setInputCloud(scene_input);
@@ -377,10 +377,10 @@ int main(int argc, char **argv)
   // 获取包的路径
   string package_path = ros::package::getPath("3dposedetection");
   // 读取文件中的标定块点云
-  string sr = package_path +"/model_pcd/calibblockthird.obj";
+  string sr = package_path +"/model_pcd/test_model.pcd";
 
   pcl::console::print_highlight("Loading model point clouds...\n");
-  if (pcl::io::loadOBJFile<PointNT>(sr, *object) < 0)
+  if (pcl::io::loadPCDFile<PointNT>(sr, *object) < 0)
   {
     pcl::console::print_error("Error loading object/scene file!\n");
     return (-1);
@@ -454,6 +454,8 @@ int main(int argc, char **argv)
     // 在PCLVisualizer对象visu中添加一个坐标系，以展示listeningresult表示的变换。
     visu.addCoordinateSystem(0.2, listeningresult);
 
+    // pcl::io::savePCDFileASCII ("/home/michael/calibration_ws/src/icp-handeye/qr_code_icp/src/3dposedetection/test_model.pcd", *remaining_cloud);
+
     //设置最大迭代次数
     icp.setMaximumIterations(iterations);
     // 设置ICP算法的输入源点云为remaining_cloud，这通常是环境中的点云。
@@ -524,7 +526,7 @@ int main(int argc, char **argv)
 
     // 广播base_link与base_laser坐标系之间的tf数据
     // br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "camera_color_optical_frame", "object"));
-    br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "camera_color_optical_frame", "tracking_marker")); // tracking_origin其对应就是camera_color_optical_frame
+    br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "tracking_origin", "tracking_marker")); // tracking_origin其对应就是camera_color_optical_frame
   }
   return (0);
 }
