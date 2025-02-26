@@ -83,6 +83,14 @@ rosrun 3dposedetection calibration
 采样15个点足够已经足够计算，选择算法为Optimize/Li_wei,点击compute输出计算的结果
 ![alt text](images/image-2.png)
 注意最终的计算结果是图像原初坐标系camera_color_optical_frame基于机械臂末端的变换
+## 关于标定板的点云
+由于3D打印件的误差会引起配准误差，从而可能会导致产生了几毫米的误差
+解决方案是将相机放于标定板的正上方，运行配准代码，将当前看到的点云进行保存，作为基准点云。
+在3dpose_forcalibration.cpp代码中的457行附近
+// pcl::io::savePCDFileASCII ("/home/michael/calibration_ws/src/icp-handeye/qr_code_icp/src/3dposedetection/test_model.pcd", *remaining_cloud);
+将此行代码解除注释，修改保存目录，重新编译，运行代码即可保存当前的点云信息
+随后修改380行处的读取文件位置，就可继续标定。
+由于直接保存点云，不进行降采样的话，配准时间会很长，可能会有几分钟的时间，但如此操作的话，精度更高。
 ## easy_handlaunch的相关配置解析
 easy_handeye/easy_handeye/launch/eye_on_hand/calibrate_depth.launch
 ```xml
