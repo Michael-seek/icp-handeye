@@ -33,4 +33,9 @@ if( PCL_FOUND )
   add_executable(calibration ${Demo_PCL_SRC} ${Demo_PCL_headers})
   target_link_libraries(calibration ${PCL_LIBRARIES} ${OpenCV_LIBS} ${catkin_LIBRARIES})
 
+  set(Demo_PCL_SRC ${CMAKE_CURRENT_SOURCE_DIR}/calibblock_gen.cpp ) 
+  include_directories( ${CMAKE_CURRENT_SOURCE_DIR} )
+  add_executable(calibblock_gen ${Demo_PCL_SRC} ${Demo_PCL_headers})
+  target_link_libraries(calibblock_gen ${PCL_LIBRARIES} ${OpenCV_LIBS} ${catkin_LIBRARIES})
+
 endif()
