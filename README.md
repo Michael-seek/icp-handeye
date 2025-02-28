@@ -69,6 +69,9 @@ roslaunch easy_handeye calibrate_depth.launch
 ![alt text](images/image1.png)
 ![alt text](images/image2.png)
 启动配准程序
+
+启动配准程序之前需要在rviz中订阅/aruco_multi/result的图像，否则不会发布二维码的tf，配准程序无法正常运行
+
 ```
 rosrun 3dposedetection calibration
 ```
