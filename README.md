@@ -85,12 +85,21 @@ rosrun 3dposedetection calibration
 注意最终的计算结果是图像原初坐标系camera_color_optical_frame基于机械臂末端的变换
 ## 关于标定板的点云
 由于3D打印件的误差会引起配准误差，从而可能会导致产生了几毫米的误差
-解决方案是将相机放于标定板的正上方，运行配准代码，将当前看到的点云进行保存，作为基准点云。
-在3dpose_forcalibration.cpp代码中的457行附近
-// pcl::io::savePCDFileASCII ("/home/michael/calibration_ws/src/icp-handeye/qr_code_icp/src/3dposedetection/test_model.pcd", *remaining_cloud);
-将此行代码解除注释，修改保存目录，重新编译，运行代码即可保存当前的点云信息
-随后修改380行处的读取文件位置，就可继续标定。
-由于直接保存点云，不进行降采样的话，配准时间会很长，可能会有几分钟的时间，但如此操作的话，精度更高。
+解决方案是录制标定板的点云作为基准点云用于后续的标定
+将相机移动到标定板的上方，保证桌面的没有其余杂物，光线良好
+先启动相机相关的节点
+```
+roslaunch realsense2_camera rs_camera.launch filters:=pointcloud align_depth:=true
+```
+在rviz中观察点云，如果点云效果良好
+运行生成标定板的节点
+```
+rosrun 3dposedetection calibblock_gen
+```
+代码会在model_pcd文件夹生成一个pcd格式的点云
+修改3dpose_forcalibration.cpp中读取点云的名称和路径，然后重新编译，再按照上面的方法进行标定，精度上会有所改善
+string sr = package_path +"/model_pcd/test_model.pcd";
+![alt text](images/gen_calibblock.png)
 ## easy_handlaunch的相关配置解析
 easy_handeye/easy_handeye/launch/eye_on_hand/calibrate_depth.launch
 ```xml
