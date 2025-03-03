@@ -89,7 +89,7 @@ int main(int argc, char **argv) {
 
     // 对点云进行降采样
     pcl::PointCloud<pcl::PointXYZ>::Ptr remaining_cloud_down(new pcl::PointCloud<pcl::PointXYZ>()); // 初始化指针
-    downsamplePointCloud(remaining_cloud,remaining_cloud_down,0.0015f);
+    downsamplePointCloud(remaining_cloud,remaining_cloud_down,0.001f);
 
     // 保存点云
     std::string save_path = ros::package::getPath("3dposedetection") + "/model_pcd/current_scene.pcd";
