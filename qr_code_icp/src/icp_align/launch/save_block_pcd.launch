@@ -1,0 +1,14 @@
+<launch>
+
+    <arg name="DistanceThreshold"      default="0.011"/>    <!-- in m -->
+    <arg name="save_pcd_name"    default="test_model"/>
+    <arg name="lafe_size"    default="0.001"/>
+
+
+    <node pkg="icp_align" type="calibblock_gen" name="save_pcd_model">
+        <param name="DistanceThreshold"        value="$(arg DistanceThreshold)"/>
+        <param name="save_pcd_name"        value="$(arg save_pcd_name)"/>
+        <param name="lafe_size"        value="$(arg lafe_size)"/>
+    </node>
+
+</launch>

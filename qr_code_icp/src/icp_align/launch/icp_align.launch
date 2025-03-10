@@ -1,0 +1,11 @@
+<launch>
+
+    <arg name="DistanceThreshold"      default="0.011"/>    <!-- in m -->
+    <arg name="pcd_model_name"    default="test_model"/>
+
+    <node pkg="icp_align" type="calibration" name="icp_align">
+        <param name="DistanceThreshold"        value="$(arg DistanceThreshold)"/>
+        <param name="pcd_model_name"        value="$(arg pcd_model_name)"/>
+    </node>
+
+</launch>
