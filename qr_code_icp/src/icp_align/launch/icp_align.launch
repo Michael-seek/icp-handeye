@@ -1,7 +1,7 @@
 <launch>
 
-    <arg name="DistanceThreshold"      default="0.011"/>    <!-- in m -->
-    <arg name="pcd_model_name"    default="test_model"/>
+    <arg name="DistanceThreshold"      default="0.011"/>    <!-- 中间平面的厚度 in m -->
+    <arg name="pcd_model_name"    default="test_model"/>    <!-- 保存点云的名字 -->
 
     <node pkg="icp_align" type="calibration" name="icp_align">
         <param name="DistanceThreshold"        value="$(arg DistanceThreshold)"/>
