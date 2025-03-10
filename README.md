@@ -73,7 +73,7 @@ roslaunch easy_handeye calibrate_depth.launch
 启动配准程序之前需要在rviz中订阅/aruco_multi/result的图像，否则不会发布二维码的tf，配准程序无法正常运行
 
 ```
-rosrun 3dposedetection calibration
+roslaunch icp_align icp_align.launch
 ```
 查看PCL输出的窗口，观察配准情况蓝色为模型点云，白色为环境点云
 ![alt text](images/image.png)
@@ -97,7 +97,7 @@ roslaunch realsense2_camera rs_camera.launch filters:=pointcloud align_depth:=tr
 在rviz中观察点云，如果点云效果良好
 运行生成标定板的节点
 ```
-rosrun 3dposedetection calibblock_gen
+roslaunch icp_align save_block_pcd.launch
 ```
 代码会在model_pcd文件夹生成一个pcd格式的点云
 修改3dpose_forcalibration.cpp中读取点云的名称和路径，然后重新编译，再按照上面的方法进行标定，精度上会有所改善
