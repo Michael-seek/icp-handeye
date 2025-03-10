@@ -1,7 +1,7 @@
 <launch>
 
     <arg name="DistanceThreshold"      default="0.011"/>    <!-- 中间平面的厚度 in m -->
-    <arg name="save_pcd_name"    default="test_model"/>     <!-- 点云配准使用的pcd模型的名字，pcd模型保存在model_pcd文件夹下 -->
+    <arg name="save_pcd_name"    default="test_model"/>     <!-- 生成的点云配pcd模型的名字，pcd模型保存在model_pcd文件夹下 -->
     <arg name="lafe_size"    default="0.001"/>              <!-- 点云体素降采样中的体素网格的大小，leaf_size 越小，体素单元越细，保留的点越多，采样越密集；leaf_size 越大，体素单元越粗，保留的点越少，采样越稀疏-->
 
 
